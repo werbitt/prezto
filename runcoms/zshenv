@@ -9,3 +9,21 @@
 if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprofile"
 fi
+
+#
+#  NIX
+#
+source /nix/var/nix/profiles/default/etc/profile.d/nix.sh
+
+path=('/nix/var/nix/profiles/default/bin' $path)
+export NIX_PATH=$HOME/.nix-defexpr/channels${NIX_PATH:+:}$NIX_PATH
+
+# Home Manager Environment Variables
+source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+
+#
+# Scripts
+#
+
+# I'm putting it here because I think this may be necessary for skhd
+path=('/Users/micah/Scripts' $path)

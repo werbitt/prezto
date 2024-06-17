@@ -37,6 +37,7 @@ zstyle ':prezto:load' pmodule \
   'directory' \
   'spectrum' \
   'utility' \
+  'git' \
   'completion' \
   'history-substring-search' \
   'prompt'
@@ -226,3 +227,11 @@ zstyle ':prezto:module:prompt' theme 'sorin'
 # before deleting or overwriting files. Set to 'no' to disable this safer
 # behavior.
 # zstyle ':prezto:module:utility' safe-ops 'yes'
+
+#
+# Powerlevel10k
+#
+
+# Enable p10k
+zstyle :prezto:module:prompt theme powerlevel10k
+

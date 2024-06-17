@@ -1,4 +1,23 @@
 #
+# Direnv pre instant prompt
+#
+emulate zsh -c "$(direnv export zsh)"
+
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+#
+# Direnv post instant prompt
+#
+
+emulate zsh -c "$(direnv hook zsh)"
+
+
+#
 # Executes commands at the start of an interactive session.
 #
 # Authors:
@@ -11,3 +30,25 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # Customize to your needs...
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+#
+# Emacs
+#
+
+# Unalias e, which gets aliases in zprezto/utilities so we pick up the
+# script to launch emacs
+unalias e
+
+#
+# Trash
+#
+alias trash='nocorrect trash'
+
+# zprezto aliases rm to rm -i, lets remove that
+unalias rm
+export PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"
